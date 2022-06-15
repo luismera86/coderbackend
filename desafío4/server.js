@@ -2,15 +2,20 @@ const express = require('express')
 
 const app = express()
 
-const port = 8080
+const puerto = 8080
+
+const router = require('./app/routes/index')
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(`${__dirname}/public`))
+app.use(router)
 
 
-
-
-app.listen(port, (err) =>{
-    if(err) {
-        console.log('No se encuentra el servido')
-    } else {
-        console.log(`Escuchando el servidor en el puerto ${port}`)
-    }
+app.listen(puerto, err => {
+	if (err) {
+		console.log(`Se produjo un error al iniciar el servidor ${puerto}`)
+	} else {
+		console.log(`El servidor esta escuchando el puerto ${puerto}`)
+	}
 })
