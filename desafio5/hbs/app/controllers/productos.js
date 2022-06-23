@@ -4,15 +4,14 @@ let productos = []
 
 // Lista de controllers
 
-
-
 // Obtener la lista de productos
 
 const getProductos = (req, res) => {
-	res.json(productos)
+	res.render('home')
+
 }
 
-// Obtener la lista de productos por parmetro
+// Obtener la lista de productos por parámetro
 
 const getProductoId = (req, res) => {
 	const id = Number(req.params.id)
@@ -22,24 +21,24 @@ const getProductoId = (req, res) => {
 		})
 		res.json(productoParam)
 	} else {
-		res.json(productos)
+		console.log('hola')
 	}
 }
 
-// Agregar un porducto por medio de un formulario
+// Agregar un producto por medio de un formulario
 
 const postProducto = (req, res) => {
 	if (productos.length === 0) {
 		const id = 1
-		const { title, price, thunbail } = req.body
-		productos.push({ title, price, thunbail, id })
-		res.status(201).send('Producto cargado con exito')
+		const { title, price, thumbnail  } = req.body
+		productos.push({ title, price, thumbnail, id })
+		res.status(201).redirect('/productos')
 	} else if (productos.length > 0) {
 		const idSuma = productos[productos.length - 1].id
 		const id = idSuma + 1
-		const { title, price, thunbail } = req.body
-		productos.push({ title, price, thunbail, id })
-		res.status(201).send('Producto cargado con exito')
+		const { title, price, thumbnail } = req.body
+		productos.push({ title, price, thumbnail, id })
+		res.status(201).redirect('/productos')
 	}
 }
 
@@ -49,13 +48,13 @@ const putProducto = (req, res) => {
 	const id = Number(req.params.id)
 
 	if (!isNaN(id)) {
-		const { title, price, thunbail } = req.body
+		const { title, price, thumbnail } = req.body
 
 		productos.forEach(producto => {
 			if (producto.id === id) {
 				producto.title = title
 				producto.price = price
-				producto.thunbail = thunbail
+				producto.thumbnail = thumbnail
 			}
 		})
 		res.status(201).send('El producto se modifico con excito')
@@ -73,10 +72,15 @@ const deleteProducto = (req, res) => {
 		const nuevoArray = productos.filter(productos => productos.id != id)
 		productos = []
 		productos.push(nuevoArray)
-		res.status(201).send('Producto eliminado con exito')
+		res.status(201).send('Producto eliminado con éxito')
 	} else {
 		res.status(404).send('No se pudo eliminar el producto')
 	}
+}
+
+const productosLista = (req, res) => {
+	
+	res.render('productos', { productos })
 }
 
 module.exports = {
@@ -85,4 +89,5 @@ module.exports = {
 	postProducto,
 	putProducto,
 	deleteProducto,
+	productosLista
 }
