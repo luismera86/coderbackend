@@ -6,11 +6,17 @@ const socket = io()
 const inpTitle = document.querySelector('#title')
 const inpPrice = document.querySelector('#price')
 const inpThumbnail = document.querySelector('#thumbnail')
-const userName = document.querySelector('#userName')
+const userMail = document.querySelector('#userMail')
 const userMessage = document.querySelector('#userMessage')
 const btnSend = document.querySelector('#btnSend')
 const noProducts = document.querySelector('#noProducts')
 const btnSendChat = document.querySelector('#btnSendChat')
+
+const tiempoTranscurrido = Date.now()
+const hoy = new Date(tiempoTranscurrido)
+const fecha= hoy.toLocaleDateString()
+const tiempo = new Date()
+const argHora=tiempo.toLocaleTimeString('it-IT')
 
 
 
@@ -19,6 +25,7 @@ const sendProduct = async() => {
         
 
         try{
+
                 socket.emit('client:enterProduct', { title: inpTitle.value, price: inpPrice.value, thumbnail: inpThumbnail.value }) 
                    console.log('Se envió el producto')
         }catch(error){
@@ -77,8 +84,9 @@ const renderProduct = async(products)=> {
 })
 
 const sendMessage = async() => {
-        try{
-                 socket.emit('client:message', { userName: userName.value, userMessage: userMessage.value })
+        try{    
+                const timeChat = `${fecha}, ${argHora}`
+                 socket.emit('client:message', { userMail: userMail.value, timeChat, userMessage: userMessage.value })
                 
         }catch(error){
                 console.log(`Se produjo el error: ${error}`)
@@ -88,7 +96,6 @@ const sendMessage = async() => {
 btnSendChat.addEventListener('click', (event) => {
         event.preventDefault()
         sendMessage()
-        userName.value = ''
         userMessage.value = ''
 })
 
