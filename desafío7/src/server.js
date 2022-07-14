@@ -45,7 +45,7 @@ io.on('connection', async (socket) => {
 
 	socket.on('client:message', async (messageInfo) => {
 		const { userMail, timeChat, userMessage } = messageInfo
-		await chatManager.newMessages(userMail, timeChat, userMail)
+		await chatManager.newMessages(userMail, timeChat, userMessage)
         const messages = await chatManager.getAllMessages()
         
 		io.emit('serverSend:message', messages)
