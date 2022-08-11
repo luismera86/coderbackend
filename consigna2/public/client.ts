@@ -1,8 +1,19 @@
 import { Messages } from "../src/interfaces/mssage"
 import { io } from "../src/server"
 
+// Query Selectors
+
+const email = document.querySelector('#email')
+const name = document.querySelector('#name')
+const lastName = document.querySelector('#lastName')
+const age = document.querySelector('#age')
+const alias = document.querySelector('#alias')
+const avatar = document.querySelector('#avatar')
+const btnForm = document.querySelector('#btnForm')
+const text = document.querySelector('#text')
+
 io.on('server:messages', messages => {
-    renderMessages(messages)
+renderMessages(messages)
 })
 
 const renderMessages = async (messages: Messages) => {
@@ -26,7 +37,21 @@ const sendMessage = async () => {
 
     try {
 
-        const clientMessage = 'Ingresar el objeto llamado por los input del html'
+        if(email !== null) {
+            const clientMessage: Messages = {
+                author: {
+                    id: email.toString(),
+                    name: name,
+                    lastName: lastName,
+                    age: Number(age),
+                    alias: alias,
+                    avatar: avatar
+                },
+                text: text
+            }
+        }
+
+        
 
         io.emit('client:message', clientMessage)
         

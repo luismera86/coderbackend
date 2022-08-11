@@ -30,5 +30,8 @@ io.on('connection', async (socket) => {
 
     const messages = chatManager.getMessages()
     io.emit('server:messages', messages)
+    io.on('client:message', (messages) => { 
+        chatManager.addMessages(messages)
+     })
 
  })
