@@ -47,6 +47,8 @@ app.use(
 
 app.get('/', auth, (req, res) => {
 	res.sendFile(path.join(__dirname, '../public/home.html'))
+
+	
 })
 
 app.get('/login', login, (req, res) => {
@@ -72,6 +74,11 @@ app.get('/logout',  (req, res) => {
 	res.send('Hasta luego')
 })
 
+app.get('/user', (req, res) => {
+  
+	res.send(req.session.username)
+}
+)
 
 
 app.listen(PORT, () => {

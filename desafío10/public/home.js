@@ -1,9 +1,15 @@
 
-const saludo = document.querySelector('#saludo')
+
 const btnLogout = document.querySelector('#btnLogout')
 
+const mostrarMsg = async () => {
+    const response = await fetch('/user')
+    const data = await response.text()
+    document.querySelector('#saludo').innerHTML = `<p>Bienvenido ${data}</p>`    
+    console.log(data)
+}
 
-
+mostrarMsg()
 
 btnLogout.addEventListener('click', async () => { 
     
@@ -14,7 +20,7 @@ btnLogout.addEventListener('click', async () => {
     setTimeout(() => {
         location.reload()
       
-    }, 3000
+    }, 1000
     )
 })
 
