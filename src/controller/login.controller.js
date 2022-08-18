@@ -1,6 +1,6 @@
 const { response, request } = require("express");
 
-const Users = require('../model/user') // Users.insertManey()
+const User = require('../model/user') //await User.insertMany()
 
 const logUser = async (req = request, res = response) => {
     try {
