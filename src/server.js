@@ -141,19 +141,19 @@ app.get('/fail', (req, res) => {
 
 const isValidPassword = (reqPass, password) => {
 
-    return bcrypt.compareSync(reqPass, password )
+    return bcrypt.compareSync(  password, reqPass)
 }
 
 
 const loginStrategy = new LocalStrategy( async (username, password, done) => { 
 
 
-        console.log('entra')
-         const user = await User.findOne({username})
-    
-            if(!user || !isValidPassword(password, user.password) ) {
-                console.log(password)
-                return done('Invalid Credential', null)
+        
+         const user = await User.findOne({mail: username})
+       
+            if(!user || !isValidPassword(user.password, password ) ) {
+                
+                return done( null, false)
     
             } 
     
@@ -167,12 +167,11 @@ passport.use('login', loginStrategy)
 
 // Rutas
 
-app.get('/login', (req, res) => { 
 
- })
 
 app.post('/login', passport.authenticate('login', { failureRedirect: '/faillogin'}), async (req, res) => { 
-    const user = await User.findOne({email: req.body.email})
+    const user = await User.findOne({email: req.body.username})
+
     res.render('login', {
         username: user.username
     })
@@ -183,6 +182,13 @@ app.get('/faillogin', (req, res) => {
         msg: 'Usuario o contraseña no válido'
     })
  })
+
+ app.get('/logout', (req, res) => {
+   res.render('home', {
+    msg: 'Desconectado'
+   })
+ }
+ )
 
  app.listen(PORT, () => {
     console.log(`Servidor conectado al puerto ${PORT}`)
