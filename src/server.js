@@ -8,9 +8,12 @@ const path = require('path')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 require('./config/mongo.db')
+const yargs = require('yargs') (process.argv.slice(2))
 
 
+const args = yargs.argv
 
+console.log(args)
 
 
 
