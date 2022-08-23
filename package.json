@@ -15,5 +15,14 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.0",
+    "minimist": "^1.2.6"
   }
 }

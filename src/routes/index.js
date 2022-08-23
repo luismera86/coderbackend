@@ -5,8 +5,6 @@ const userRoutes = require('./user.routes')
 
 const routes = Router()
 
-
-
 routes.get('/user', userRoutes)
 routes.get('/login', loginRoutes)
 routes.get('/register', registerRoutes)

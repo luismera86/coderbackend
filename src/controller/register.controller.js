@@ -9,9 +9,8 @@ const getRegister = async (req = request, res = response) => {
 const regUser = async (req = request, res = response) => {
 	try {
 		console.log('Iniciando el registro')
-	/* 	 const { username, email, password } = req.body
-       
-       
+		/* const { username, email, password } = req.body
+
        const salt = bcrypt.genSaltSync(10)
        password = bcrypt.hashSync(password, salt)
 

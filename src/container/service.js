@@ -1,30 +1,22 @@
 
 class Service {
+  constructor () {
 
-    constructor() {
+  }
 
-        
+  async getAllUsers () {
+    try {
+
+    } catch (error) {
+      console.log(error)
     }
+  }
 
-    async getAllUsers() {
-        try {
+  async registerUser () {
+    try {
 
-            
-            
-        } catch (error) {
-            console.log(error)
-        }
+    } catch (error) {
+      console.log(error)
     }
-
-    async registerUser() {
-        try {
-
-            
-            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    
+  }
 }
