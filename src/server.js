@@ -56,6 +56,8 @@ app.get('/', (req, res) => {
 
 // DESAFÍO 12
 
+const { fork } = require('child_process')
+
 app.get('/info', (req, res) => {
   res.json({
     path: process.cwd(),
@@ -63,6 +65,26 @@ app.get('/info', (req, res) => {
     node_v: process.version,
     so: process.platform,
     memory_used: process.memoryUsage(),
+  })
+})
+
+app.get('/api/randoms', (req, res) => {
+  const { cant } = req.query
+
+  console.log(cant)
+
+  const forked = fork(path.join(__dirname, './child.js'))
+
+  if (cant === undefined) {
+    forked.send(100000000)
+  } else {
+    forked.send(cant)
+  }
+
+  forked.on('message', msg => {
+    res.json({
+      random_numbers: msg,
+    })
   })
 })
 
