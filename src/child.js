@@ -12,10 +12,11 @@ process.on('message', cant => {
     numbersRandoms.push(prueba)
   }
 
+  numbersRandoms.sort()
+
   for (let i = 0; i < numbersRandoms.length; i++) {
     if (numbersRandoms[i + 1] === numbersRandoms[i]) {
       count++
-      console.log(count)
     } else {
       uniqueNumbers.push(numbersRandoms[i])
       repeatedNumbers.push(count)

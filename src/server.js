@@ -71,8 +71,6 @@ app.get('/info', (req, res) => {
 app.get('/api/randoms', (req, res) => {
   const { cant } = req.query
 
-  console.log(cant)
-
   const forked = fork(path.join(__dirname, './child.js'))
 
   if (cant === undefined) {
