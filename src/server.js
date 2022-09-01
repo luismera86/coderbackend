@@ -103,6 +103,7 @@ if (cluster.isPrimary && isCluster) {
     cluster.fork() // Crea un nuevo proceso en caso de que se baje un worker
   })
 } else if (isFork) {
+  // Decimos si entra en modo fork con el pm2 ./src/server.js -- puerto fork
   app.listen(PORT, () => {
     console.log(`Escuchando el puerto ${PORT} - Process ID: ${process.pid}. Date: ${new Date().toLocaleDateString()}`)
   })
