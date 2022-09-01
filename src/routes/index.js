@@ -1,12 +1,9 @@
-const { Router } = require('express')
-const loginRoutes = require('./login.routes')
-const registerRoutes = require('./register.routes')
-const userRoutes = require('./user.routes')
+import { Router } from 'express'
 
-const routes = Router()
+const router = Router()
 
-routes.get('/user', userRoutes)
-routes.get('/login', loginRoutes)
-routes.get('/register', registerRoutes)
+router.get('/datos', (req, res) => {
+  res.send('Datos')
+})
 
-module.exports = routes
+export default router
