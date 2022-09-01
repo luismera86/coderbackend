@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session')
 
 const cookieParser = require('cookie-parser')
-const { PORT, SECRET_KEY } = require('./config/config')
+const { SECRET_KEY } = require('./config/config')
 const routes = require('./routes')
 const path = require('path')
 const passport = require('passport')
@@ -84,6 +84,33 @@ app.get('/api/randoms', (req, res) => {
       random_numbers: msg,
     })
   })
+})
+
+// DESAFÍO 13
+
+const os = require('os')
+const cluster = require('cluster')
+const cpus = os.cpus()
+const PORT = Number(process.argv[2]) || 3000
+const isCluster = process.argv[3] === 'cluster'
+const isFork = process.argv[3] === 'fork'
+
+if (cluster.isPrimary && isCluster) {
+  // Devuelve true si cluster es un proceso principal o false si es un worker
+  cpus.map(() => cluster.fork()) // Iteramos por todos los cpus y por cada cpu crea un subprocess
+  cluster.on('exit', worker => {
+    console.log(`Worker ${worker.process.pid} died. Date: ${new Date().toLocaleDateString()}`)
+    cluster.fork() // Crea un nuevo proceso en caso de que se baje un worker
+  })
+} else if (isFork) {
+  app.listen(PORT, () => {
+    console.log(`Escuchando el puerto ${PORT} - Process ID: ${process.pid}. Date: ${new Date().toLocaleDateString()}`)
+  })
+}
+
+// Muestra en el navegador el numero de procesos ejecutados
+app.get('/info', (req, res) => {
+  res.send(`Número de procesos ${cpus.length}`)
 })
 
 // ----------------------------- Registro de usuarios ------------------------------------------------------
@@ -197,6 +224,7 @@ app.get('/logout', (req, res) => {
 
 // Integrado el uso de minimist
 
-app.listen(args.port, () => {
+/* app.listen(args.port, () => {
   console.log(`Servidor conectado al puerto ${args.port}`)
 })
+ */
