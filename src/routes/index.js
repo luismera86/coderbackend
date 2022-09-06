@@ -5,8 +5,8 @@ const userRoutes = require('./user.routes')
 
 const routes = Router()
 
-routes.get('/user', userRoutes)
-routes.get('/login', loginRoutes)
-routes.get('/register', registerRoutes)
+routes.use('/user', userRoutes)
+routes.use('/login', loginRoutes)
+routes.use('/register', registerRoutes)
 
 module.exports = routes
