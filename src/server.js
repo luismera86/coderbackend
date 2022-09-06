@@ -9,6 +9,20 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 require('./config/mongo.db')
 
+/* DESAFÍO 14 */
+const compression = require('compression')
+const winston = require('winston')
+
+const logger = winston.createLogger({
+  level: 'warn',
+  transports: [
+    new winston.transport.Console({ level: 'verbose'}),
+    new winston.transport.File({ filename: 'info.log', level: 'error'})
+  ]
+})
+
+
+
 /*  CONSIGA DEL DESAFÍO 12 */
 
 const parseArgs = require('minimist')
@@ -65,8 +79,21 @@ app.get('/info', (req, res) => {
     node_v: process.version,
     so: process.platform,
     memory_used: process.memoryUsage(),
+    msg_compress: 'Hola'.repeat(6000)
   })
 })
+
+app.get('/info-compress', compression(), (req, res) => {
+  res.json({
+    path: process.cwd(),
+    id_process: process.pid,
+    node_v: process.version,
+    so: process.platform,
+    memory_used: process.memoryUsage(),
+    msg_compress: 'Hola'.repeat(6000)
+  })
+})
+
 
 app.get('/api/randoms', (req, res) => {
   const { cant } = req.query
@@ -225,7 +252,7 @@ app.get('/logout', (req, res) => {
 
 // Integrado el uso de minimist
 
-/* app.listen(args.port, () => {
+ app.listen(args.port, () => {
   console.log(`Servidor conectado al puerto ${args.port}`)
 })
- */
+ 
