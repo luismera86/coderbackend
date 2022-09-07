@@ -11,18 +11,15 @@ require('./config/mongo.db')
 
 /* DESAFÍO 14 */
 const compression = require('compression')
-const winston = require('winston')
 
-const logger = winston.createLogger({
-  level: 'warn',
+/* const logger = winston.createLogger({
   transports: [
-    new winston.transport.Console({ level: 'verbose'}),
-    new winston.transport.File({ filename: 'info.log', level: 'error'})
-  ]
+    new winston.transports.Console({ level: 'debug' }),
+    new winston.transports.File({  filename: './logs/warn.log', level: 'warn', }),
+    new winston.transports.File({ level: 'error', filename: './logs/error.log' }),
+  ],
 })
-
-
-
+ */
 /*  CONSIGA DEL DESAFÍO 12 */
 
 const parseArgs = require('minimist')
@@ -79,7 +76,7 @@ app.get('/info', (req, res) => {
     node_v: process.version,
     so: process.platform,
     memory_used: process.memoryUsage(),
-    msg_compress: 'Hola'.repeat(6000)
+    msg_compress: 'Hola'.repeat(6000),
   })
 })
 
@@ -90,10 +87,9 @@ app.get('/info-compress', compression(), (req, res) => {
     node_v: process.version,
     so: process.platform,
     memory_used: process.memoryUsage(),
-    msg_compress: 'Hola'.repeat(6000)
+    msg_compress: 'Hola'.repeat(6000),
   })
 })
-
 
 app.get('/api/randoms', (req, res) => {
   const { cant } = req.query
@@ -148,6 +144,9 @@ app.get('/info', (req, res) => {
 const bcrypt = require('bcrypt')
 const User = require('./model/user')
 
+const error404 = require('./middlewares/error404')
+const { logger } = require('./utils/logger')
+
 // Encriptar la contraseña
 const hashPassword = password => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
@@ -195,19 +194,31 @@ passport.deserializeUser((id, done) => {
 // Rutas
 
 app.get('/register', async (req, res) => {
-  res.render('register')
+  try {
+    res.render('register')
+  } catch (error) {
+    logger.log('error', error)
+  }
 })
 
 app.post('/register', passport.authenticate('register', { failureRedirect: '/fail' }), (req, res) => {
-  res.render('home', {
-    msg: 'Usuarios registrado con éxito',
-  })
+  try {
+    res.render('home', {
+      msg: 'Usuarios registrado con éxito',
+    })
+  } catch (error) {
+    logger.log('error', error)
+  }
 })
 
 app.get('/fail', (req, res) => {
-  res.render('register', {
-    msg: 'El nombre de usuario o mail ya existen',
-  })
+  try {
+    res.render('register', {
+      msg: 'El nombre de usuario o mail ya existen',
+    })
+  } catch (error) {
+    logger.log('error', error)
+  }
 })
 
 // --------------------------------- Login de Usuario --------------------------------------
@@ -231,28 +242,49 @@ passport.use('login', loginStrategy)
 // Rutas
 
 app.post('/login', passport.authenticate('login', { failureRedirect: '/faillogin' }), async (req, res) => {
-  const user = await User.findOne({ email: req.body.username })
-
-  res.render('login', {
-    username: user.username,
-  })
+  try {
+    const user = await User.findOne({ email: req.body.username })
+  
+    res.render('login', {
+      username: user.username,
+    })
+    
+  } catch (error) {
+    logger.log('error', error)
+    
+  }
+  
 })
 
 app.get('/faillogin', (req, res) => {
-  res.render('home', {
-    msg: 'Usuario o contraseña no válido',
-  })
+
+  try {
+    
+    res.render('home', {
+      msg: 'Usuario o contraseña no válido',
+    })
+  } catch (error) {
+    logger.log('error', error)
+    
+  }
 })
 
 app.get('/logout', (req, res) => {
-  res.render('home', {
-    msg: 'Desconectado',
-  })
+  try {
+    res.render('home', {
+      msg: 'Desconectado',
+    })
+    
+  } catch (error) {
+    logger.log('error', error)
+    
+  }
 })
+
+app.use(error404)
 
 // Integrado el uso de minimist
 
- app.listen(args.port, () => {
-  console.log(`Servidor conectado al puerto ${args.port}`)
+app.listen(args.port, () => {
+  logger.info(`Servidor conectado al puerto ${args.port}`)
 })
- 
