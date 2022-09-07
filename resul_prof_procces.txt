@@ -1,0 +1,542 @@
+Statistical profiling result from result_prof.log, (1065 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+    880   82.6%          /home/luis/.nvm/versions/node/v16.16.0/bin/node
+     19    1.8%          /usr/lib/libc.so.6
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      2    0.2%    1.2%  LazyCompile: *realpathSync node:fs:2425:22
+      2    0.2%    1.2%  Function: ^makeRequireFunction node:internal/modules/cjs/helpers:58:29
+      1    0.1%    0.6%  LazyCompile: *resolve node:path:1091:10
+      1    0.1%    0.6%  LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
+      1    0.1%    0.6%  Function: ^tryCreateBuffer node:fs:414:25
+      1    0.1%    0.6%  Function: ^realpathSync node:fs:2425:22
+      1    0.1%    0.6%  Function: ^readSync node:fs:684:18
+      1    0.1%    0.6%  Function: ^normalizeEncoding node:internal/util:160:27
+      1    0.1%    0.6%  Function: ^getEncodingOps node:buffer:679:24
+      1    0.1%    0.6%  Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    0.1%    0.6%  Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    0.1%    0.6%  Function: ^<anonymous> node:internal/validators:236:42
+      1    0.1%    0.6%  Function: ^<anonymous> node:internal/fs/utils:681:42
+
+ [C++]:
+   ticks  total  nonlib   name
+    100    9.4%   60.2%  __write@@GLIBC_2.2.5
+     20    1.9%   12.0%  syscall@@GLIBC_2.2.5
+      7    0.7%    4.2%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      4    0.4%    2.4%  _IO_file_xsputn@@GLIBC_2.2.5
+      3    0.3%    1.8%  epoll_pwait@@GLIBC_2.6
+      2    0.2%    1.2%  std::ostream::sentry::sentry(std::ostream&)
+      2    0.2%    1.2%  fwrite@@GLIBC_2.2.5
+      2    0.2%    1.2%  cfree@GLIBC_2.2.5
+      2    0.2%    1.2%  __mmap@@GLIBC_PRIVATE
+      2    0.2%    1.2%  __libc_malloc@@GLIBC_2.2.5
+      2    0.2%    1.2%  __clock_gettime@@GLIBC_PRIVATE
+      2    0.2%    1.2%  _IO_default_xsputn@@GLIBC_2.2.5
+      1    0.1%    0.6%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, unsigned long) const
+      1    0.1%    0.6%  pthread_cond_signal@@GLIBC_2.3.2
+      1    0.1%    0.6%  __mprotect@@GLIBC_PRIVATE
+
+ [Summary]:
+   ticks  total  nonlib   name
+     15    1.4%    9.0%  JavaScript
+    151   14.2%   91.0%  C++
+     41    3.8%   24.7%  GC
+    899   84.4%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     61   58.1%    5.7%  __write@@GLIBC_2.2.5
+     20   19.0%    1.9%  syscall@@GLIBC_2.2.5
+      7    6.7%    0.7%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      4    3.8%    0.4%  _IO_file_xsputn@@GLIBC_2.2.5
+      2    1.9%    0.2%  std::ostream::sentry::sentry(std::ostream&)
+      2    1.9%    0.2%  fwrite@@GLIBC_2.2.5
+      2    1.9%    0.2%  cfree@GLIBC_2.2.5
+      2    1.9%    0.2%  __libc_malloc@@GLIBC_2.2.5
+      1    1.0%    0.1%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, unsigned long) const
+      1    1.0%    0.1%  __mprotect@@GLIBC_PRIVATE
+      1    1.0%    0.1%  __mmap@@GLIBC_PRIVATE
+      1    1.0%    0.1%  __clock_gettime@@GLIBC_PRIVATE
+      1    1.0%    0.1%  _IO_default_xsputn@@GLIBC_2.2.5
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    880   82.6%  /home/luis/.nvm/versions/node/v16.16.0/bin/node
+    770   87.5%    /home/luis/.nvm/versions/node/v16.16.0/bin/node
+    312   40.5%      Function: ^compileFunction node:vm:308:25
+    308   98.7%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+    308  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+    297   96.4%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+     11    3.6%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      4    1.3%        LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1017:18
+      4  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      4  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+    129   16.8%      Function: ^stat node:internal/modules/cjs/loader:151:14
+     71   55.0%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+     70   98.6%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+     70  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1    1.4%          LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+     58   45.0%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
+     53   91.4%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+     49   92.5%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      3    5.7%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      1    1.9%            LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+      5    8.6%          Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      5  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+     42    5.5%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+     31   73.8%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      5   16.1%          Function: ~<anonymous> node:crypto:1:1
+      5  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3    9.7%          Function: ~<anonymous> node:tls:1:1
+      3  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3    9.7%          Function: ~<anonymous> node:http:1:1
+      3  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3    9.7%          Function: ~<anonymous> node:_http_client:1:1
+      3  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    6.5%          Function: ~<anonymous> node:internal/crypto/hkdf:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    6.5%          Function: ~<anonymous> node:child_process:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    6.5%          Function: ~<anonymous> node:assert:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          LazyCompile: ~lazyRequire node:internal/crypto/util:67:21
+      1  100.0%            LazyCompile: ~get node:crypto:287:8
+      1    3.2%          LazyCompile: ~lazyLoadStreams node:fs:2858:25
+      1  100.0%            LazyCompile: ~get ReadStream node:fs:3001:17
+      1    3.2%          LazyCompile: ~get node:dns:334:8
+      1  100.0%            /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1    3.2%          Function: ~<anonymous> node:tty:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:internal/crypto/pbkdf2:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:internal/crypto/cipher:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:dns:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:cluster:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:_tls_common:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    3.2%          Function: ~<anonymous> node:_http_common:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      9   21.4%        Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      9  100.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      9  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      2    4.8%        LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1   50.0%          LazyCompile: ~loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+      1   50.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+     34    4.4%      Function: ^openSync node:fs:576:18
+     34  100.0%        Function: ^readFileSync node:fs:450:22
+     29   85.3%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+     29  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      4   11.8%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      4  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    2.9%          LazyCompile: ~Module._extensions..json node:internal/modules/cjs/loader:1164:39
+      1  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+     25    3.2%      Function: ^read node:internal/modules/package_json_reader:16:14
+     23   92.0%        Function: ^readPackage node:internal/modules/cjs/loader:290:21
+     20   87.0%          Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+     20  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      2    8.7%          Function: ^readPackageScope node:internal/modules/cjs/loader:321:26
+      1   50.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1   50.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    4.3%          LazyCompile: ~resolveExports node:internal/modules/cjs/loader:472:24
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      2    8.0%        LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
+      2  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      2  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+     21    2.7%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+     21  100.0%        LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      3   14.3%          Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    9.5%          LazyCompile: ~initializeCJSLoader node:internal/bootstrap/pre_execution:477:29
+      2  100.0%            LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      2    9.5%          Function: ~<anonymous> node:internal/process/esm_loader:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    9.5%          Function: ~<anonymous> node:internal/modules/esm/get_source:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    9.5%          Function: ~<anonymous> node:internal/modules/esm/get_format:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2    9.5%          Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.8%          LazyCompile: ~setupInspectorHooks node:internal/bootstrap/pre_execution:288:29
+      1  100.0%            LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1    4.8%          LazyCompile: ~initializeReport node:internal/bootstrap/pre_execution:238:26
+      1  100.0%            LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1    4.8%          LazyCompile: ~get BlockList node:net:1826:16
+      1  100.0%            Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      1    4.8%          Function: ~<anonymous> node:net:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.8%          Function: ~<anonymous> node:internal/source_map/source_map_cache:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.8%          Function: ~<anonymous> node:internal/modules/esm/module_map:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.8%          Function: ~<anonymous> node:internal/modules/cjs/loader:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.8%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+     20    2.6%      /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      3   15.0%        Function: ^readPackage node:internal/modules/cjs/loader:290:21
+      3  100.0%          Function: ^readPackageScope node:internal/modules/cjs/loader:321:26
+      3  100.0%            Function: ^trySelf node:internal/modules/cjs/loader:441:17
+      3   15.0%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      3  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      3  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      2   10.0%        Function: ^compileFunction node:vm:308:25
+      2  100.0%          Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+      2  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      2   10.0%        Function: ^FastBuffer node:internal/buffer:958:14
+      2  100.0%          Function: ^createUnsafeBuffer node:internal/buffer:1059:28
+      1   50.0%            Function: ^createPool node:buffer:151:20
+      1   50.0%            Function: ^allocate node:buffer:398:18
+      1    5.0%        LazyCompile: ~resolvePackageTargetString node:internal/modules/esm/resolve:507:36
+      1  100.0%          LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:572:30
+      1  100.0%            LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:572:30
+      1    5.0%        LazyCompile: ~pathtoRegexp /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/path-to-regexp/index.js:28:22
+      1  100.0%          LazyCompile: ~Layer /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/router/layer.js:33:15
+      1  100.0%            LazyCompile: ~use /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/router/index.js:439:25
+      1    5.0%        LazyCompile: ~getStack /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:381:19
+      1  100.0%          LazyCompile: ~depd /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:103:15
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/body-parser/index.js:1:1
+      1    5.0%        LazyCompile: ~getOwn node:internal/bootstrap/loaders:180:16
+      1  100.0%          LazyCompile: ~syncExports node:internal/bootstrap/loaders:287:14
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/bootstrap/loaders:273:15
+      1    5.0%        LazyCompile: ~containsNamespace /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:29:28
+      1  100.0%          LazyCompile: ~istraced /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:169:19
+      1  100.0%            LazyCompile: ~depd /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:103:15
+      1    5.0%        LazyCompile: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/debug/src/node.js:34:64
+      1  100.0%          /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/debug/src/node.js:1:1
+      1    5.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/stack-trace/lib/stack-trace.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    5.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/signal-exit/index.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    5.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/application.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    5.0%        Function: ^getOwn node:internal/bootstrap/loaders:180:16
+      1  100.0%          Function: ^syncExports node:internal/bootstrap/loaders:287:14
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/bootstrap/loaders:273:15
+      9    1.2%      Function: ^getOptions node:internal/fs/utils:315:20
+      9  100.0%        Function: ^readFileSync node:fs:450:22
+      9  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      9  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      9    1.2%      Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      9  100.0%        Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      9  100.0%          Function: ^require node:internal/modules/cjs/helpers:101:31
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/readable.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mquery/node_modules/debug/src/node.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/model.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/helpers/model/applyHooks.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/document_provider.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/gauge/index.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/express.js:1:1
+      1   11.1%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/async/asyncify.js:1:1
+      8    1.0%      Function: ^readPackage node:internal/modules/cjs/loader:290:21
+      4   50.0%        Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+      4  100.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      4  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      2   25.0%        LazyCompile: ~resolveExports node:internal/modules/cjs/loader:472:24
+      1   50.0%          LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1   50.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      2   25.0%        Function: ^readPackageScope node:internal/modules/cjs/loader:321:26
+      1   50.0%          Function: ^trySelf node:internal/modules/cjs/loader:441:17
+      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1   50.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+
+    100    9.4%  __write@@GLIBC_2.2.5
+     61   61.0%    /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      5    8.2%      /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1   20.0%        LazyCompile: ~module.exports.get_napi_build_versions_raw /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/napi.js:140:54
+      1  100.0%          LazyCompile: ~module.exports.validate_package_json /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/napi.js:46:48
+      1  100.0%            LazyCompile: ~validate_config /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:195:25
+      1   20.0%        LazyCompile: ~module.exports /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/minimist/index.js:1:27
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/src/server.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1   20.0%        LazyCompile: ~exports.install /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/whatwg-url/lib/URL.js:83:19
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/whatwg-url/index.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1   20.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/whatwg-url/node_modules/webidl-conversions/lib/index.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1   20.0%        Function: ^getOwn node:internal/bootstrap/loaders:180:16
+      1  100.0%          Function: ^syncExports node:internal/bootstrap/loaders:287:14
+      1  100.0%            Function: ^<anonymous> node:internal/bootstrap/loaders:273:15
+      2    3.3%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      2  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.6%      LazyCompile: ~wrapfunction /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:413:23
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/utils.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1017:18
+      1  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      LazyCompile: ~value node:internal/console/constructor:321:20
+      1  100.0%        LazyCompile: ~log node:internal/console/constructor:359:6
+      1  100.0%          /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%            LazyCompile: ~dbConnection /run/media/luis/Archivos/coder_backend/coderbackend/src/config/mongo.db.js:3:22
+      1    1.6%      LazyCompile: ~validate_config /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:195:25
+      1  100.0%        LazyCompile: ~exports.find /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/pre-binding.js:17:24
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/bcrypt/bcrypt.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~tryPackage node:internal/modules/cjs/loader:338:20
+      1  100.0%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1    1.6%      LazyCompile: ~stringToFlags node:internal/fs/utils:556:23
+      1  100.0%        Function: ^openSync node:fs:576:18
+      1  100.0%          Function: ^readFileSync node:fs:450:22
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      LazyCompile: ~processImmediate node:internal/timers:421:28
+      1    1.6%      LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:89:28
+      1  100.0%        LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.6%      LazyCompile: ~nextTick node:internal/process/task_queues:104:18
+      1  100.0%        LazyCompile: ~onwrite node:internal/streams/writable:425:17
+      1  100.0%          LazyCompile: ~afterWriteDispatched node:internal/stream_base_commons:155:30
+      1  100.0%            LazyCompile: ~writeGeneric node:internal/stream_base_commons:147:22
+      1    1.6%      LazyCompile: ~module.exports.get_napi_build_versions /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/napi.js:115:50
+      1  100.0%        LazyCompile: ~module.exports.expand_commands /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/napi.js:94:42
+      1  100.0%          LazyCompile: ~parseOpts /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/node-pre-gyp.js:144:37
+      1  100.0%            LazyCompile: ~Run /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/node-pre-gyp.js:78:13
+      1    1.6%      LazyCompile: ~module.exports.evaluate /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:277:35
+      1  100.0%        LazyCompile: ~exports.find /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@mapbox/node-pre-gyp/lib/pre-binding.js:17:24
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/bcrypt/bcrypt.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~makeRequireFunction node:internal/modules/cjs/helpers:58:29
+      1  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      LazyCompile: ~makeClientMetadata /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongodb/lib/utils.js:587:28
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongodb/lib/connection_string.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      LazyCompile: ~isConditionalExportsMainSugar node:internal/modules/esm/resolve:647:39
+      1  100.0%        LazyCompile: ~packageExportsResolve node:internal/modules/esm/resolve:678:31
+      1  100.0%          Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    1.6%      LazyCompile: ~introduce /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/diagnostics.js:134:19
+      1  100.0%        LazyCompile: ~nope /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/diagnostics.js:152:14
+      1  100.0%          LazyCompile: ~dev /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/node/development.js:12:38
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston/rejection-handler.js:1:1
+      1    1.6%      LazyCompile: ~getHostname node:url:478:21
+      1  100.0%        LazyCompile: ~parse node:url:167:37
+      1  100.0%          LazyCompile: ~urlParse node:url:151:18
+      1  100.0%            LazyCompile: ~urlResolve node:url:667:20
+      1    1.6%      LazyCompile: ~forEachMimeType /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mime-types/index.js:158:52
+      1  100.0%        /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%          LazyCompile: ~populateMaps /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mime-types/index.js:154:23
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mime-types/index.js:1:1
+      1    1.6%      LazyCompile: ~extendedparser /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/body-parser/lib/types/urlencoded.js:132:25
+      1  100.0%        LazyCompile: ~urlencoded /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/body-parser/lib/types/urlencoded.js:43:21
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/src/server.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~exports.each /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/utils.js:924:24
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/types/buffer.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      LazyCompile: ~enable /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/application.js:469:29
+      1  100.0%        LazyCompile: ~defaultConfiguration /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/application.js:77:57
+      1  100.0%          LazyCompile: ~init /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/application.js:64:25
+      1  100.0%            LazyCompile: ~createApplication /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/express.js:37:27
+      1    1.6%      LazyCompile: ~emitAfterScript node:internal/async_hooks:518:25
+      1  100.0%        LazyCompile: ~processTicksAndRejections node:internal/process/task_queues:68:35
+      1    1.6%      LazyCompile: ~doWrite /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_writable.js:404:17
+      1  100.0%        LazyCompile: ~writeOrBuffer /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_writable.js:363:23
+      1  100.0%          LazyCompile: ~Writable.write /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_writable.js:288:37
+      1  100.0%            LazyCompile: ~ondata /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_readable.js:679:18
+      1    1.6%      LazyCompile: ~debug node:internal/util/debuglog:76:15
+      1  100.0%        LazyCompile: ~logger node:internal/util/debuglog:95:18
+      1  100.0%          LazyCompile: ~Module._resolveLookupPaths node:internal/modules/cjs/loader:667:38
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1    1.6%      LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:41:35
+      1  100.0%        LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:137:19
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/debug/src/node.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~createDebug /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mquery/node_modules/debug/src/common.js:60:22
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mquery/lib/mquery.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      LazyCompile: ~basename node:path:1306:11
+      1  100.0%        LazyCompile: ~findLongestRegisteredExtension node:internal/modules/cjs/loader:413:40
+      1  100.0%          LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+      1    1.6%      LazyCompile: ~applyHooks /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/helpers/model/applyHooks.js:32:20
+      1  100.0%        LazyCompile: ~compile /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/model.js:4901:33
+      1  100.0%          LazyCompile: ~Mongoose._model /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/index.js:572:37
+      1  100.0%            LazyCompile: ~Mongoose.model /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/index.js:509:36
+      1    1.6%      LazyCompile: ~afterWriteDispatched node:internal/stream_base_commons:155:30
+      1  100.0%        LazyCompile: ~writeGeneric node:internal/stream_base_commons:147:22
+      1  100.0%          LazyCompile: ~Socket._writeGeneric node:net:791:42
+      1  100.0%            LazyCompile: ~Socket._write node:net:828:35
+      1    1.6%      LazyCompile: ~adjustOffset node:buffer:1099:22
+      1  100.0%        LazyCompile: ~subarray node:buffer:1116:46
+      1  100.0%          LazyCompile: ~slice node:buffer:1124:40
+      1  100.0%            LazyCompile: ~Bitfield /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/sparse-bitfield/index.js:5:19
+      1    1.6%      LazyCompile: ~addIdGetter /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/helpers/schema/idGetter.js:7:38
+      1  100.0%        LazyCompile: ~_preCompile /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/schema.js:2434:52
+      1  100.0%          LazyCompile: ~compile /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/model.js:4901:33
+      1  100.0%            LazyCompile: ~Mongoose._model /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/index.js:572:37
+      1    1.6%      LazyCompile: ~add /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston/logger.js:344:6
+      1  100.0%        LazyCompile: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston/logger.js:124:26
+      1  100.0%          /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%            LazyCompile: ~configure /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston/logger.js:81:12
+      1    1.6%      LazyCompile: ~adapter /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/adapters/index.js:11:26
+      1  100.0%        LazyCompile: ~enabled /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/diagnostics.js:55:17
+      1  100.0%          LazyCompile: ~dev /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@dabh/diagnostics/node/development.js:12:38
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/winston/lib/winston/exception-handler.js:1:1
+      1    1.6%      LazyCompile: ~__extends /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/sift/lib/index.js:30:23
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/sift/lib/index.js:593:43
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/sift/lib/index.js:5:19
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/sift/lib/index.js:1:11
+      1    1.6%      LazyCompile: ~URL node:internal/url:621:14
+      1  100.0%        LazyCompile: ~pathToFileURL node:internal/url:1458:23
+      1  100.0%          Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    1.6%      LazyCompile: ~Server.listen node:net:1453:35
+      1  100.0%        LazyCompile: ~listen /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/application.js:633:29
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/src/server.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~Schema.defaultOptions /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/schema.js:456:43
+      1  100.0%        LazyCompile: ~Schema /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/schema.js:96:16
+      1  100.0%          Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/src/model/user.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1    1.6%      LazyCompile: ~Readable.read /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_readable.js:392:36
+      1  100.0%        LazyCompile: ~flow /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_readable.js:935:14
+      1  100.0%          LazyCompile: ~resume_ /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/readable-stream/lib/_stream_readable.js:909:17
+      1  100.0%            LazyCompile: ~processTicksAndRejections node:internal/process/task_queues:68:35
+      1    1.6%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%        LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%            LazyCompile: ~Module.require node:internal/modules/cjs/loader:997:36
+      1    1.6%      LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%        LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1    1.6%      LazyCompile: ~Model.$wrapCallback /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/model.js:5107:31
+      1  100.0%        LazyCompile: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/model.js:1432:52
+      1  100.0%          LazyCompile: ~promiseOrCallback /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/helpers/promiseOrCallback.js:8:44
+      1  100.0%            LazyCompile: ~Mongoose._promiseOrCallback /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/index.js:1224:49
+      1    1.6%      LazyCompile: ~<anonymous> node:internal/url:684:12
+      1  100.0%        Function: ^toString node:internal/url:732:11
+      1  100.0%          /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%            LazyCompile: ~finalizeEsmResolution node:internal/modules/cjs/loader:939:31
+      1    1.6%      LazyCompile: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/object-assign/index.js:41:63
+      1  100.0%        /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      1  100.0%          LazyCompile: ~shouldUseNative /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/object-assign/index.js:21:25
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/object-assign/index.js:1:1
+      1    1.6%      Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.6%      Function: ~<anonymous> node:internal/fs/rimraf:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%          LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%            Function: ~<anonymous> node:internal/fs/promises:1:1
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/src/routes/register.routes.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/whatwg-url/lib/url-state-machine.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/npmlog/log.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/call-bind/callBound.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/bson/lib/long.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/bcrypt/bcrypt.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/@colors/colors/lib/colors.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    1.6%      Function: ^wrapfunction /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/depd/index.js:413:23
+      1  100.0%        Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/express/lib/request.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    1.6%      Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%        Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1  100.0%          Function: ^require node:internal/modules/cjs/helpers:101:31
+      1  100.0%            Function: ~<anonymous> /run/media/luis/Archivos/coder_backend/coderbackend/node_modules/bson/lib/uuid.js:1:1
+
+     20    1.9%  syscall@@GLIBC_2.2.5
+     20  100.0%    LazyCompile: *realpathSync node:fs:2425:22
+     20  100.0%      Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+     18   90.0%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
+     14   77.8%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+     13   92.9%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    7.1%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      4   22.2%          Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      4  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      2   10.0%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      2  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      2  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+
+     19    1.8%  /usr/lib/libc.so.6
+     10   52.6%    /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      2   20.0%      LazyCompile: *realpathSync node:fs:2425:22
+      2  100.0%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+      2  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1   50.0%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      1   50.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+      2   20.0%      /home/luis/.nvm/versions/node/v16.16.0/bin/node
+      2  100.0%        Function: ^stat node:internal/modules/cjs/loader:151:14
+      1   50.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1  100.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+      1   50.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1   10.0%      LazyCompile: ~formatValue node:internal/util/inspect:745:21
+      1  100.0%        LazyCompile: ~inspect node:internal/util/inspect:292:17
+      1  100.0%          LazyCompile: ~formatWithOptionsInternal node:internal/util/inspect:2048:35
+      1  100.0%            LazyCompile: ~formatWithOptions node:internal/util/inspect:2024:27
+      1   10.0%      LazyCompile: ~Duplex node:internal/streams/duplex:52:16
+      1  100.0%        LazyCompile: ~Socket node:net:285:16
+      1  100.0%          LazyCompile: ~WriteStream node:tty:85:21
+      1  100.0%            LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:41:35
+      1   10.0%      LazyCompile: ~<anonymous> node:internal/validators:191:40
+      1  100.0%        Function: ^readSync node:fs:684:18
+      1  100.0%          Function: ^tryReadSync node:fs:429:21
+      1  100.0%            Function: ^readFileSync node:fs:450:22
+      1   10.0%      LazyCompile: *resolve node:path:1091:10
+      1  100.0%        Function: ^readPackage node:internal/modules/cjs/loader:290:21
+      1  100.0%          Function: ^readPackageScope node:internal/modules/cjs/loader:321:26
+      1  100.0%            Function: ^trySelf node:internal/modules/cjs/loader:441:17
+      1   10.0%      LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
+      1  100.0%        Function: ^trySelf node:internal/modules/cjs/loader:441:17
+      1  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1   10.0%      Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%        Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%          Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:997:36
+
