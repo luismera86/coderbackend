@@ -12,14 +12,7 @@ require('./config/mongo.db')
 /* DESAFÍO 14 */
 const compression = require('compression')
 
-/* const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console({ level: 'debug' }),
-    new winston.transports.File({  filename: './logs/warn.log', level: 'warn', }),
-    new winston.transports.File({ level: 'error', filename: './logs/error.log' }),
-  ],
-})
- */
+
 /*  CONSIGA DEL DESAFÍO 12 */
 
 const parseArgs = require('minimist')
@@ -70,25 +63,37 @@ app.get('/', (req, res) => {
 const { fork } = require('child_process')
 
 app.get('/info', (req, res) => {
-  res.json({
-    path: process.cwd(),
-    id_process: process.pid,
-    node_v: process.version,
-    so: process.platform,
-    memory_used: process.memoryUsage(),
-    msg_compress: 'Hola'.repeat(6000),
-  })
+  try {
+    res.json({
+      path: process.cwd(),
+      id_process: process.pid,
+      node_v: process.version,
+      so: process.platform,
+      memory_used: process.memoryUsage(),
+      msg_compress: 'Hola'.repeat(6000),
+    })
+
+    logger.log('info', 'Get /info')
+  } catch (error) {
+    logger.log('error', error)
+  }
 })
 
 app.get('/info-compress', compression(), (req, res) => {
-  res.json({
-    path: process.cwd(),
-    id_process: process.pid,
-    node_v: process.version,
-    so: process.platform,
-    memory_used: process.memoryUsage(),
-    msg_compress: 'Hola'.repeat(6000),
-  })
+
+  try {
+    res.json({
+      path: process.cwd(),
+      id_process: process.pid,
+      node_v: process.version,
+      so: process.platform,
+      memory_used: process.memoryUsage(),
+      msg_compress: 'Hola'.repeat(6000),
+    })
+    logger.log('info', 'Get /info-compress')
+  } catch (error) {
+    logger.log('error', error)
+  }
 })
 
 app.get('/api/randoms', (req, res) => {
@@ -196,6 +201,7 @@ passport.deserializeUser((id, done) => {
 app.get('/register', async (req, res) => {
   try {
     res.render('register')
+    logger.log('info', 'Get /register')
   } catch (error) {
     logger.log('error', error)
   }
@@ -216,6 +222,7 @@ app.get('/fail', (req, res) => {
     res.render('register', {
       msg: 'El nombre de usuario o mail ya existen',
     })
+    logger.log('info', 'Get /fail')
   } catch (error) {
     logger.log('error', error)
   }
@@ -244,28 +251,23 @@ passport.use('login', loginStrategy)
 app.post('/login', passport.authenticate('login', { failureRedirect: '/faillogin' }), async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.username })
-  
+
     res.render('login', {
       username: user.username,
     })
-    
   } catch (error) {
     logger.log('error', error)
-    
   }
-  
 })
 
 app.get('/faillogin', (req, res) => {
-
   try {
-    
     res.render('home', {
       msg: 'Usuario o contraseña no válido',
     })
+    logger.log('info', 'Get /faillogin')
   } catch (error) {
     logger.log('error', error)
-    
   }
 })
 
@@ -274,17 +276,16 @@ app.get('/logout', (req, res) => {
     res.render('home', {
       msg: 'Desconectado',
     })
-    
   } catch (error) {
     logger.log('error', error)
-    
   }
 })
 
-app.use(error404)
 
 // Integrado el uso de minimist
 
 app.listen(args.port, () => {
   logger.info(`Servidor conectado al puerto ${args.port}`)
 })
+
+app.use(error404)
