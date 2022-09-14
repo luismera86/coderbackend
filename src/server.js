@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session')
 
 const cookieParser = require('cookie-parser')
-const { SECRET_KEY } = require('./config/config')
+const { SECRET_KEY, PORT } = require('./config/config')
 const routes = require('./routes')
 const path = require('path')
 const passport = require('passport')
@@ -285,8 +285,8 @@ app.get('/logout', (req, res) => {
 
 // Integrado el uso de minimist
 
-app.listen(args.port, () => {
-  logger.info(`Servidor conectado al puerto ${args.port}`)
+app.listen(PORT, () => {
+  logger.info(`Servidor conectado al puerto ${PORT}`)
 })
 
 app.use(error404)
