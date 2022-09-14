@@ -97,7 +97,7 @@ app.get('/info-compress', compression(), (req, res) => {
   }
 })
 
-/* app.get('/api/randoms', (req, res) => {
+ app.get('/api/randoms', (req, res) => {
   const { cant } = req.query
 
   const forked = fork(path.join(__dirname, './child.js'))
@@ -113,7 +113,7 @@ app.get('/info-compress', compression(), (req, res) => {
       random_numbers: msg,
     })
   })
-}) */
+}) 
 
 // DESAFÍO 13
 
