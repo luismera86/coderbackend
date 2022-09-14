@@ -120,7 +120,7 @@ app.get('/info-compress', compression(), (req, res) => {
 const os = require('os')
 const cluster = require('cluster')
 const cpus = os.cpus()
-const PORT = Number(process.argv[2]) || 3000
+// const PORT = Number(process.argv[2]) || 3000
 const isCluster = process.argv[3] === 'cluster'
 const isFork = process.argv[3] === 'fork'
 
