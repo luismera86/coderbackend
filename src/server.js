@@ -5,7 +5,6 @@ import logger from './utils/logger.js'
 import path from 'path'
 
 const { PORT } = config
-
 const app = express()
 
 app.use(express.static(path.join(__dirname, '../public')))
