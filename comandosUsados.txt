@@ -1,5 +1,0 @@
-artillery quick --count 20 -n 50 http://localhost:8080/info > result_fork_getInfo.txt
-node --prof ./src/server 
-node --prof-process result_prof.log > resul_prof_procces.txt
-node --prof-process result_prof.log > resul_prof_procces.txt 
-node --inspect ./src/server 
