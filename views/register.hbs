@@ -16,7 +16,7 @@
       <div class='row'>
 
         <div class='col-6'>
-          <form action='/register' method='post' enctype='multipart/form-data'>
+          <form action='/register' method='POST' >
             <label>Nombre</label>
             <input type='text' name='firstName' placeholder='Ingrese su nombre' class='form-control' required />
             <label>Apellido</label>
@@ -35,12 +35,10 @@
               class='form-control'
               required
             />
-            <label>Foto o Avatar</label>
-            <input type='' name='email' placeholder='Ingrese su email' class='form-control' required />
             <label>Contraseña</label>
             <input type='password' name='password' placeholder='Ingrese su contraseña' class='form-control' required />
             <label>Foto o Avatar</label>
-            <input type='file' name='image' class='form-control' required />
+            <input type='file' name='avatar' class='form-control'  />
             <input type='submit' value='REGISTRAR' class='btn btn-primary mt-5' />
             <h4 class='mt-5'>{{msg}}</h4>
           </form>

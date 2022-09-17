@@ -1,4 +1,4 @@
-import User from '../models/user.js'
+import User from '../models/userModel.js'
 import logger from '../utils/logger.js'
 
 export const renderRegister = (req, res) => {
@@ -12,11 +12,23 @@ export const renderRegister = (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    const user = new User(req.body)
+    const { firstName, lastName, age, address, phone, password, avatar, email } = req.body
+
+    const user = new User({
+      firstName,
+      lastName,
+      age,
+      address,
+      phone,
+      password,
+      avatar,
+      email,
+    })
     await user.save()
+    console.log(user)
     res.status(201).json(user)
   } catch (error) {
-    logger.error(error)
+    logger.log('error', error)
     res.status(500).json({ message: 'Error adding user' })
   }
 }
