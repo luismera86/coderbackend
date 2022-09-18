@@ -5,7 +5,6 @@ import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import logger from './utils/logger.js'
-import multer from 'multer'
 import passport from 'passport'
 import path from 'path'
 import routes from './routes/index.js'
@@ -13,13 +12,13 @@ import session from 'express-session'
 
 const { PORT, SECRET_KEY } = config
 const app = express()
-const upload = multer({ dest: 'uploads/' })
+
 export const LocalStrategy = Strategy
 connectDB()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../public')))
+// app.use(express.static(path.join(__dirname, '../public')))
 app.set('view engine', 'hbs')
 app.get('/', (req, res) => {
   res.render('home')

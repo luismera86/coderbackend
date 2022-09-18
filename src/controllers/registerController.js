@@ -1,6 +1,8 @@
 import User from '../models/userModel.js'
+import config from '../config/config.js'
 import logger from '../utils/logger.js'
 
+const { PORT } = config
 export const renderRegister = (req, res) => {
   try {
     res.render('register')
@@ -12,7 +14,9 @@ export const renderRegister = (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    const { firstName, lastName, age, address, phone, password, avatar, email } = req.body
+    const { firstName, lastName, age, address, phone, password, email } = req.body
+    const avatar = `http://localhost:${PORT}/${req.file.filename}`
+    console.log(req.file)
 
     const user = new User({
       firstName,
