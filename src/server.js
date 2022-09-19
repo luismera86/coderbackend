@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import logger from './utils/logger.js'
 import passport from 'passport'
-import path from 'path'
 import routes from './routes/index.js'
 import session from 'express-session'
 
@@ -18,7 +17,7 @@ connectDB()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static('uploads'))
 app.set('view engine', 'hbs')
 app.get('/', (req, res) => {
   res.render('home')
