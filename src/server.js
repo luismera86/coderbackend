@@ -1,5 +1,5 @@
-import { Strategy } from 'passport-strategy'
-import { __dirname } from './utils/path.js'
+import './middlewares/passport.js'
+
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
@@ -12,7 +12,6 @@ import session from 'express-session'
 const { PORT, SECRET_KEY } = config
 const app = express()
 
-export const LocalStrategy = Strategy
 connectDB()
 
 app.use(express.urlencoded({ extended: true }))
