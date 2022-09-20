@@ -13,15 +13,6 @@ const { PORT, SECRET_KEY } = config
 const app = express()
 
 connectDB()
-
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(express.static('uploads'))
-app.set('view engine', 'hbs')
-app.get('/', (req, res) => {
-  res.render('home')
-})
-app.use('/', routes)
 app.use(cookieParser())
 app.use(
   session({
@@ -38,6 +29,14 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.static('uploads'))
+app.set('view engine', 'hbs')
+app.get('/', (req, res) => {
+  res.render('home')
+})
+app.use('/', routes)
 
 app.listen(PORT, () => {
   logger.info(`Server on port ${PORT}`)
