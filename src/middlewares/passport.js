@@ -6,18 +6,16 @@ import logger from '../utils/logger.js'
 import passport from 'passport'
 
 const { PORT } = config
+
 const LocalStrategy = Strategy
 const hashPassword = password => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 }
-console.log('entrando al registerStrategy')
 
 const registerStrategy = new LocalStrategy(
   { passReqToCallback: true, usernameField: 'email' },
   async (req, email, password, done) => {
     try {
-      console.log(password)
-      console.log('verificando')
       const { firstName, lastName, age, address, phone } = req.body
       const existingEmail = await User.findOne({ email })
 
@@ -57,3 +55,26 @@ passport.deserializeUser((id, done) => {
 })
 
 passport.use('register', registerStrategy)
+
+const isValidPassword = (reqPass, password) => {
+  return bcrypt.compareSync(password, reqPass)
+}
+
+const loginStrategy = new LocalStrategy(async (username, password, done) => {
+  try {
+    const user = await User.findOne({ email: username })
+
+    if (!user) {
+      return done(null, false)
+    }
+    if (!isValidPassword(user.password, password)) {
+      return done(null, false)
+    }
+    return done(null, user)
+  } catch (error) {
+    logger.info('error', error)
+    console.log(error)
+  }
+})
+
+passport.use('login', loginStrategy)
