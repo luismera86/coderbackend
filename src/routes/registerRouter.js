@@ -4,13 +4,12 @@ import { Router } from 'express'
 import passport from 'passport'
 import { upload } from '../middlewares/uploadFiles.js'
 
-// import uploadFiles from '../middlewares/uploadFiles.js'
-
 const registerRouter = Router()
 
 registerRouter.get('/', renderRegister)
 registerRouter.post(
   '/',
+  upload.single('avatar'),
   passport.authenticate('register', {
     successRedirect: '/login',
     failureRedirect: '/register2',
