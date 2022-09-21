@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import config from '../config/config.js'
 import logger from '../utils/logger.js'
 import passport from 'passport'
+import sendWelcomeEmail from '../services/nodeMailer.js'
 
 const { PORT } = config
 
@@ -36,6 +37,7 @@ const registerStrategy = new LocalStrategy(
         email,
       })
       await user.save()
+      await sendWelcomeEmail(user)
 
       return done(null, user)
     } catch (error) {

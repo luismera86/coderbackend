@@ -2,7 +2,6 @@ import Cart from '../models/cartModel.js'
 import Product from '../models/productsModel.js'
 import logger from '../utils/logger.js'
 
-/* 
 export const addProductToCart = async (req, res) => {
   try {
     const { productId } = req.params
@@ -20,9 +19,10 @@ export const addProductToCart = async (req, res) => {
 export const getCart = async (req, res) => {
   try {
     const cart = new Cart()
+    console.log(req.user)
     res.render('cart', {})
   } catch (error) {
     logger.info('error', error)
     res.status(404).json({ message: error.message })
   }
-} */
+}

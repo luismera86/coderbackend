@@ -12,7 +12,6 @@ registerRouter.post(
   '/',
   upload.single('avatar'),
   passport.authenticate('register', {
-    successRedirect: '/',
     failureRedirect: '/register/registerfail',
   }),
   addUser
