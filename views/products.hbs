@@ -17,20 +17,22 @@
 </head>
 <body>
     {{> navbar }}
-<hr>
+<div class=" container d-flex flex-wrap mt-5">
+
 {{#each products}}
 <div class='card m-3' style='width: 18rem;'>
   <img src='{{thumbnail}}' class='card-img-top' alt='...' />
   <div class='card-body'>
     <h5 class='card-title'>{{name}}</h5>
     <p class='card-text'>{{description}}</p>
-    <p class='card-text'>{{price}}</p>
+    <p class='card-text'>Precio: ${{price}}</p>
     <form action='/cart' method='POST'>
       <input type='hidden' name='productId' value='{{_id}}' /> {{!-- lo recibimos al post en /cart con req.body.productId --}}
       <button type='submit' class='btn btn-primary'>Agregar al carrito</button>
   </div>
 </div>
 {{/each}}
+</div>
 
 </body>
 </html>
