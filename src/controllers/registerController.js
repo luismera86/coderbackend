@@ -22,7 +22,6 @@ export const addUser = async (req, res) => {
 
 export const renderFail = (req, res) => {
   try {
-    console.log('entrando al renderFail')
     res.render('register', {
       msg: 'Ya existe un usuario con ese email',
     })

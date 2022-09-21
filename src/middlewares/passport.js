@@ -25,7 +25,6 @@ const registerStrategy = new LocalStrategy(
       }
 
       const avatar = `http://localhost:${PORT}/${req.file.filename}`
-      console.log(avatar)
       const user = new User({
         firstName,
         lastName,

@@ -15,6 +15,7 @@ export const failLoginRender = (req, res) => {
 export const renderLogin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.username })
+    req.session.user = user
     res.render('dashboard', { user })
   } catch (error) {
     logger.error(error)
