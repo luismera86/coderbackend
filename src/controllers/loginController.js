@@ -1,3 +1,4 @@
+import User from '../models/userModel.js'
 import logger from '../utils/logger.js'
 
 export const failLoginRender = (req, res) => {
@@ -11,9 +12,10 @@ export const failLoginRender = (req, res) => {
   }
 }
 
-export const renderLogin = (req, res) => {
+export const renderLogin = async (req, res) => {
   try {
-    res.render('dashboard')
+    const user = await User.findOne({ email: req.body.username })
+    res.render('dashboard', { user })
   } catch (error) {
     logger.error(error)
     res.status(500).json({ message: 'Error getting users' })

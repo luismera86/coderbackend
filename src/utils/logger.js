@@ -8,17 +8,17 @@ const logger = createLogger({
   ),
   transports: [
     new transports.Console({
-      level: 'info'
+      level: 'debug',
+    }),
+    new transports.File({
+      filename: 'logs/warn.log',
+      level: 'warn',
     }),
     new transports.File({
       filename: 'logs/error.log',
-      level: 'error'
+      level: 'error',
     }),
-    new transports.File({
-      level: 'warn',
-      filename: 'logs/warn.log'
-    })
-  ]
+  ],
 })
 
 export default logger

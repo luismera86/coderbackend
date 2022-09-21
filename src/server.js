@@ -1,4 +1,5 @@
 import './middlewares/passport.js'
+import { } from 'express-handlebars'
 
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
@@ -31,6 +32,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(express.static('public'))
 app.use(express.static('uploads'))
 app.set('view engine', 'hbs')
 app.get('/', (req, res) => {

@@ -1,0 +1,19 @@
+[2022-09-20T14:52:32.073Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:53:11.241Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:54:24.562Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T14:55:06.752Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T14:56:03.497Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:56:33.483Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T15:11:30.064Z] error: Cannot read properties of undefined (reading 'render')
