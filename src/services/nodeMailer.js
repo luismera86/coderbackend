@@ -4,7 +4,7 @@ import logger from '../utils/logger.js'
 
 const { MAIL, MAIL_PASSWORD } = config
 
-const sendWelcomeEmail = async (user) => {
+export const sendEmailNewUser = async user => {
   const transporter = createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -28,5 +28,3 @@ const sendWelcomeEmail = async (user) => {
     logger.info('error', error)
   }
 }
-
-export default sendWelcomeEmail
