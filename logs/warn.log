@@ -17,3 +17,4 @@
     |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
     --- property 'client' closes the circle
 [2022-09-20T15:11:30.064Z] error: Cannot read properties of undefined (reading 'render')
+[2022-09-21T05:47:32.742Z] error: Cannot create property '_locals' on string 'dashboard'

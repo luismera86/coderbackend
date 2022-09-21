@@ -4,6 +4,7 @@ import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
 import express from 'express'
+import hbs from 'hbs'
 import logger from './utils/logger.js'
 import passport from 'passport'
 import routes from './routes/index.js'
@@ -34,6 +35,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(express.static('uploads'))
 app.set('view engine', 'hbs')
+hbs.registerPartials('views/partials')
 
 app.get('/', (req, res) => {
   res.render('home')
