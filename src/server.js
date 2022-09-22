@@ -1,11 +1,13 @@
 import './middlewares/passport.js'
 
+import cluster from 'cluster'
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import hbs from 'hbs'
 import logger from './utils/logger.js'
+import os from 'os'
 import passport from 'passport'
 import routes from './routes/index.js'
 import session from 'express-session'
@@ -36,6 +38,23 @@ app.use(express.static('public'))
 app.use(express.static('uploads'))
 app.set('view engine', 'hbs')
 hbs.registerPartials('views/partials')
+
+const cpus = os.cpus()
+const isCluster = process.argv[3] === 'cluster'
+const isFork = process.argv[3] === 'fork'
+if (cluster.isPrimary && isCluster) {
+  // Devuelve true si cluster es un proceso principal o false si es un worker
+  cpus.map(() => cluster.fork()) // Iteramos por todos los cpus y por cada cpu crea un subprocess
+  cluster.on('exit', worker => {
+    console.log(`Worker ${worker.process.pid} died. Date: ${new Date().toLocaleDateString()}`)
+    cluster.fork() // Crea un nuevo proceso en caso de que se baje un worker
+  })
+} else if (isFork) {
+  // Decimos si entra en modo fork con el pm2 ./src/server.js -- puerto fork
+  app.listen(PORT, () => {
+    logger.info(`Escuchando el puerto ${PORT} - Process ID: ${process.pid}. Date: ${new Date().toLocaleDateString()}`)
+  })
+}
 
 app.get('/', (req, res) => {
   res.render('home')

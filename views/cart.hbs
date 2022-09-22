@@ -23,6 +23,7 @@
                 <th scope="col">Producto</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Imagen</th>
+
             </tr>
         </thead>
         <tbody>
@@ -30,17 +31,23 @@
             <tr>
                 <td>{{name}}</td>
                 <td>{{price}}</td>
-                <td><img src="{{thumbnail}}" alt=""></td>
+                <td><img src="{{thumbnail}}" class='card-img-top w-25' alt=""></td>
+                <td>
+                    <form action="/cart/{{_id}}">
+                        <button type="submit" class="btn btn-danger" > Eliminar </button>
+                    </form>
                 </td>
+                
             </tr>
             {{/each}}
         </tbody>
     </table>
     <h3>Total: {{total}}</h3>
-    <form action="/cart/checkout" method="POST">
-        <button type="submit" class="btn btn-success">Comprar</button>
+    <form>
+        <button type="submit" class="btn btn-success" onclick="buyCart()">Comprar</button>
     </form>
     
+    <script src="/src/controllers/cartController.js"></script>
 </body>
 </html>
 

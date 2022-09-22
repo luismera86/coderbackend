@@ -12,4 +12,5 @@ export default {
   TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
   TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
   PHONE_ADMIN: process.env.PHONE_ADMIN || '',
+  TWILIO_WHATSAPP_NUMBER: process.env.TWILIO_WHATSAPP_NUMBER || '',
 }
