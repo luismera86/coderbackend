@@ -36,6 +36,7 @@ const registerStrategy = new LocalStrategy(
         password: hashPassword(password),
         email,
       })
+
       await sendEmailNewUser(user)
       await user.save()
 

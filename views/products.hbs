@@ -18,7 +18,6 @@
 <body>
     {{> navbar }}
 <div class=" container d-flex flex-wrap mt-5">
-
 {{#each products}}
 <div class='card m-3' style='width: 18rem;'>
   <img src='{{thumbnail}}' class='card-img-top' alt='...' />
@@ -28,12 +27,13 @@
     <p class='card-text'>Precio: ${{price}}</p>
     <form action='/cart' method='POST'>
       <input type='hidden' name='productId' value='{{_id}}' /> {{!-- lo recibimos al post en /cart con req.body.productId --}}
-      <button type='submit' class='btn btn-primary'>Agregar al carrito</button>
+      <button type='submit' class='btn btn-primary' onclick='addProductToCart()'>Agregar al carrito</button>
   </div>
 </div>
 {{/each}}
 </div>
 
+<script src="./src/controllers/cartController.js"></script>
 </body>
 </html>
 
