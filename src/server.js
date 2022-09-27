@@ -15,6 +15,7 @@ import session from 'express-session'
 const { PORT, SECRET_KEY } = config
 const app = express()
 
+
 connectDB()
 app.use(cookieParser())
 app.use(
