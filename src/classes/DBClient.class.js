@@ -1,4 +1,4 @@
-import CustomError from "./CustomError.class";
+import CustomError from "./CustomError.class.js";
 
 class DBClient {
    

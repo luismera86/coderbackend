@@ -35,9 +35,8 @@ class ProductDAO {
   async add(product) {
     try {
       await this.db.connect()
-      const newProduct = new this.collection(product)
-      await newProduct.save()
-      return newProduct
+      const createdProduct = await this.collection.create(product)
+      return createdProduct
     } catch (error) {
       logger.error('error', error)
       throw new CustomError(500, 'Error adding product')
@@ -55,8 +54,8 @@ import ProductDAO from '../classes/ProductDAO.class.js'
 
 const productDAO = new ProductDAO()
 
-productDAO.add({name: 'test', price: 100, thumbnail: 'test'}) por ejemplo para agregar un producto
-productDAO.getAll() para obtener todos los productos
-productDAO.getById('id') para obtener un producto por id
+await productDAO.add({name: 'test', price: 100, thumbnail: 'test'}) por ejemplo para agregar un producto
+await productDAO.getAll() para obtener todos los productos
+await productDAO.getById('id') para obtener un producto por id
 
 */

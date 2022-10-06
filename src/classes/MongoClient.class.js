@@ -1,5 +1,5 @@
-import DBClient from './DBClient.class';
-import logger from '../utils/logger';
+import DBClient from './DBClient.class.js';
+import logger from '../utils/logger.js';
 import mongoose from 'mongoose';
 
 class MongoClient extends DBClient {
@@ -23,7 +23,7 @@ class MongoClient extends DBClient {
 
     async disconnect() {
         try {
-            await this.client.close()
+            await this.client.disconnect()
             this.connect = false
             logger.info('info', 'MongoDB connection closed')
         } catch (error) {
