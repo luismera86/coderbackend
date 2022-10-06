@@ -12,8 +12,6 @@ import passport from 'passport'
 import routes from './routes/index.js'
 import session from 'express-session'
 
-// TODO Crear los DAOS que faltan
-
 const { PORT, SECRET_KEY } = config
 const app = express()
 
