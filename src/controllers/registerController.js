@@ -11,7 +11,7 @@ export const renderRegister = (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    res.status(201).render('home', {
+    res.render('home', {
       msg: 'Usuarios registrado con éxito',
     })
   } catch (error) {

@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import './middlewares/passport.js'
 
 import cluster from 'cluster'
