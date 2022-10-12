@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 
+import { expect, test } from '@jest/globals'
+
 import config from '../src/config/config.js'
 import request from 'supertest'
 
@@ -8,7 +10,8 @@ const { PORT } = config
 const server = `http://localhost:${PORT}`
 
 describe('POST /register', () => {
-  beforeAll(() => {})
+  const mailNumberTest = Math.floor(Math.random() * 1000000)
+
   const user = {
     firstName: 'test',
     lastName: 'test',
@@ -19,8 +22,11 @@ describe('POST /register', () => {
     avatar: 'test',
     password: 'test',
   }
-  test('Debe devolver un status 200 al enviar un usuario nuevo llamado test', async () => {
-    const response = await request(server).post('/register').send(user)
+
+  test('Debe devolver un status 200 al enviar un usuario nuevo test', async () => {
+    const response = await request(server)
+      .post('/register')
+      .send({ ...user, email: `test${mailNumberTest}@test.com` })
     expect(response.statusCode).toBe(200)
   })
 

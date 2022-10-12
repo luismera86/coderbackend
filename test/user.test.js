@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 
+import { expect, test } from '@jest/globals'
+
 import config from '../src/config/config.js'
 import request from 'supertest'
 

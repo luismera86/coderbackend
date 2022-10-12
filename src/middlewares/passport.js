@@ -1,10 +1,11 @@
 import { Strategy } from 'passport-local'
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt'
-import config from '../config/config.js'
 import logger from '../utils/logger.js'
 import passport from 'passport'
 import { sendEmailNewUser } from '../services/nodeMailer.js'
+
+// import config from '../config/config.js'
 
 // const { PORT } = config
 
