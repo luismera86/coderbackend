@@ -1,30 +1,19 @@
+import { request, response } from 'express'
+
 import logger from '../utils/logger.js'
 
-export const renderRegister = (req, res) => {
+export const userRegister = async (req = request, res = response) => {
   try {
-    res.render('register')
-  } catch (error) {
-    logger.error(error)
-    res.status(500).json({ message: 'Error getting users' })
-  }
-}
-
-export const addUser = async (req, res) => {
-  try {
-    res.render('home', {
-      msg: 'Usuarios registrado con éxito',
-    })
+    res.status(200).redirect('/home')
   } catch (error) {
     logger.log('error', error)
     res.status(500).json({ message: 'Error adding user' })
   }
 }
 
-export const renderFail = (req, res) => {
+export const registerFail = (req = request, res = response) => {
   try {
-    res.render('register', {
-      msg: 'Ya existe un usuario con ese email',
-    })
+    res.status(401).redirect('/register')
   } catch (error) {
     logger.error(error)
     res.status(500).json({ message: 'Error getting users' })
