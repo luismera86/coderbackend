@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 
+// TODO ver como ocultar el password en la respuesta
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -32,6 +33,12 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+    enum: ['admin', 'user'],
+    default: 'user',
   },
 })
 

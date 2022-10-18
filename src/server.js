@@ -6,6 +6,7 @@ import cluster from 'cluster'
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import express from 'express'
 import hbs from 'hbs'
 import logger from './utils/logger.js'
@@ -18,6 +19,7 @@ const { PORT, SECRET_KEY } = config
 const app = express()
 
 connectDB()
+app.use(cors())
 app.use(cookieParser())
 app.use(
   session({

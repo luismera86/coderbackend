@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
 
 const cartSchema = new Schema({
-  mail: {
-    type: String,
+  id_user: {
+    type: Number,
     required: true,
   },
   products: {

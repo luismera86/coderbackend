@@ -66,6 +66,7 @@ const isValidPassword = (reqPass, password) => {
 const loginStrategy = new LocalStrategy(async (username, password, done) => {
   try {
     const user = await User.findOne({ email: username })
+    console.log(username)
 
     if (!user) {
       return done(null, false)

@@ -6,6 +6,6 @@ const cartRouter = Router()
 
 cartRouter.get('/', getCart)
 cartRouter.post('/', addProductToCart)
-cartRouter.get('/:id', deleteProductFromCart)
+cartRouter.delete('/:id', deleteProductFromCart)
 
 export default cartRouter

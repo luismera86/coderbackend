@@ -7,7 +7,7 @@ const loginRouter = Router()
 loginRouter.get('/faillogin', failLoginRender)
 loginRouter.post(
   '/',
-  passport.authenticate('login', { failureRedirect: '/login/faillogin' }),
+  passport.authenticate('login', { failureRedirect: '/login/faillogin'}),
   renderLogin
 )
 
